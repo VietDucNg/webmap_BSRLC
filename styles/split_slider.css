@@ -1,0 +1,11 @@
+/* Slider styles */
+#split-screen-slider {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 50%; /* Start in the middle */
+    width: 5px; /* Slider width */
+    background-color: gray;
+    cursor: ew-resize; /* Horizontal resize cursor */
+    z-index: 1000;
+}

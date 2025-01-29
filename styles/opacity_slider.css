@@ -1,0 +1,76 @@
+/* Styling the opacity slider container to match Leaflet button style */
+#opacity-slider-container {
+    position: absolute;
+    top: 245px;
+    left: 12px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9); 
+    padding: 8px 12px; 
+    background-color: #fff; 
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
+    font-size: 14px;
+    border: 1px solid #ccc;
+    cursor: pointer; /* Pointer cursor when hovered over */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Add hover effect for the opacity slider container */
+#opacity-slider-container:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3); /* Darker shadow on hover */
+    background-color: #f9f9f9; /* Slight background color change on hover */
+}
+
+/* Styling the label */
+#opacity-slider-container label {
+    font-size: 15px; /* Font size to match Leaflet buttons */
+    margin-bottom: 5px;
+    color: #333; /* Dark text for readability */
+    font-weight: normal; /* Make the label text bold */
+}
+
+/* Styling the slider itself */
+#opacity-slider {
+    width: 150px; /* Fixed width for the slider */
+    appearance: none; /* Remove default slider appearance */
+    height: 8px; /* Height of the slider track */
+    background: #ddd; /* Light gray track */
+    border-radius: 5px; /* Rounded track */
+    outline: none; /* Remove outline */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Styling the thumb of the slider */
+#opacity-slider::-webkit-slider-thumb {
+    appearance: none; /* Remove default thumb appearance */
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    border-radius: 50%; /* Round thumb */
+    background: #0078a5; /* Leaflet blue color for the thumb */
+    cursor: pointer; /* Pointer cursor */
+    border: 2px solid #fff; /* White border around the thumb */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Shadow for the thumb */
+}
+
+/* Add hover effect for the slider thumb */
+#opacity-slider::-webkit-slider-thumb:hover {
+    background: #005f7f; /* Darker blue thumb on hover */
+}
+
+/* Styling for Firefox */
+#opacity-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #0078a5;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Hover effect for Firefox */
+#opacity-slider::-moz-range-thumb:hover {
+    background: #005f7f;
+}

@@ -1,0 +1,48 @@
+.split-map {
+    width: 50%;        /* Map occupies 50% of the screen width */
+    height: 100vh;     /* Map takes up the full height of the viewport */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.split-map2 {
+    width: 50%;
+    height: 100vh; /* Full height of the viewport */
+    position: absolute;
+    top: 0;
+    right: 0; /* Position the map on the right side */
+}
+
+/* style split view button */
+#split-view-div {
+    position: absolute;
+    top: 205px;
+    left: 10px;
+    z-index: 1000;
+}
+
+#split-view-div button {
+    background-color: #0078a5;
+    color: white;
+    font-size: 14px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Add hover effect  */
+#split-view-div:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3); /* Darker shadow on hover */
+}
+
+/* style year slider 1 */
+.split-year-slider {
+    left: 25%;
+}
+
+/* style year slider 2 */
+.split-year-slider2 {
+    left: 75%;
+}

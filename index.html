@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- disable unwanted scaling-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- title of the webpage-->
+    <title>Annual land cover in Baltic Sea Region </title>
+    <!-- link leaflet css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- link easy button css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+    <!-- link google font css-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- link font awesome css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">    
+    <!-- link to my css-->
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- link legend css -->
+    <link rel="stylesheet" href="styles/legend.css">
+    <!-- link title css-->
+    <link rel="stylesheet" href="styles/title.css">
+    <!-- link slider css -->
+    <link rel="stylesheet" href="styles/slider.css">
+    <!-- link opacity slider css -->
+    <link rel="stylesheet" href="styles/opacity_slider.css">
+    <!-- link to split view css -->
+    <link rel="stylesheet" href="styles/splitView.css">
+    <!-- link split slider css -->
+    <link rel="stylesheet" href="styles/split_slider.css">
+
+  </head>
+  <body>
+    <!-- Add the map title -->
+    <div id="title"> Annual land cover in Baltic Sea Region </div>
+
+    <!-- add map -->
+    <div id="map" class="single-map"></div>
+    
+    <!-- add screen split slider -->
+    <div id="split-slider" class="hidden"></div>
+
+    <!-- add map2 -->
+    <div id="map2" class="hidden"></div>
+
+    <!-- controls for split view -->
+    <div id="split-view-div">
+      <button id="split-view-btn">Split View</button>
+    </div>
+
+    <!-- year slider -->
+    <div class = "column slider" id="slider-container">
+      <span class = 'row' style='padding-right: 5px;'>2000</span>
+      <div class="row">
+        <span class="column" id="year-label" >2000</span>
+        <input class="column" id="year-slider" type="range" min="2000" max="2022" value="2000" step="1" list="year-ticks">
+        <datalist id="year-ticks">
+          <option value="2000"></option>
+          <option value="2001"></option>
+          <option value="2002"></option>
+          <option value="2003"></option>
+          <option value="2004"></option>
+          <option value="2005"></option>
+          <option value="2006"></option>
+          <option value="2007"></option>
+          <option value="2008"></option>
+          <option value="2009"></option>
+          <option value="2010"></option>
+          <option value="2011"></option>
+          <option value="2012"></option>
+          <option value="2013"></option>
+          <option value="2014"></option>
+          <option value="2015"></option>
+          <option value="2016"></option>
+          <option value="2017"></option>
+          <option value="2018"></option>
+          <option value="2019"></option>
+          <option value="2020"></option>
+          <option value="2021"></option>
+          <option value="2022"></option>
+        </datalist>
+      </div>
+      <span class = 'row' style='padding-left: 5px;'>2022</span>
+    </div>
+
+    <!-- year slider for map 2 -->
+    <div class = "column slider hidden" id="slider-container2">
+      <span class = 'row' style='padding-right: 5px;'>2000</span>
+      <div class="row">
+        <span class="column" id="year-label-2" >2000</span>
+        <input class="column" id="year-slider-2" type="range" min="2000" max="2022" value="2000" step="1" list="year-ticks">
+        <datalist id="year-ticks">
+          <option value="2000"></option>
+          <option value="2001"></option>
+          <option value="2002"></option>
+          <option value="2003"></option>
+          <option value="2004"></option>
+          <option value="2005"></option>
+          <option value="2006"></option>
+          <option value="2007"></option>
+          <option value="2008"></option>
+          <option value="2009"></option>
+          <option value="2010"></option>
+          <option value="2011"></option>
+          <option value="2012"></option>
+          <option value="2013"></option>
+          <option value="2014"></option>
+          <option value="2015"></option>
+          <option value="2016"></option>
+          <option value="2017"></option>
+          <option value="2018"></option>
+          <option value="2019"></option>
+          <option value="2020"></option>
+          <option value="2021"></option>
+          <option value="2022"></option>
+        </datalist>
+      </div>
+      <span class = 'row' style='padding-left: 5px;'>2022</span>
+    </div>
+
+    <!-- opacity slider -->
+    <div id="opacity-slider-container">
+      <label for="opacity-slider">Layer Transparency</label>
+      <input id="opacity-slider" type="range" min="0" max="1" step="0.1" value="1">
+    </div>    
+  
+    <!-- info box -->
+    <div id="infoBox">
+      <h2>Source</h2>
+      <p>
+        <h3>🔬 An annual land cover dataset for the Baltic Sea Region with crop types and peat bogs at 30m from 2000 to 2022</h3>
+        <i>Vu-Dong Pham, Farina de Waard, Fabian Thiel, Bernd Bobertz, Christina Hellmann, Duc-Viet Nguyen, Felix Beer, M. Arasumani, Marcel Schwieder, Jörg Hartleib, David Frantz & Sebastian van der Linden</i>
+        <br>DOI: <a href="https://doi.org/10.1038/s41597-024-04062-w">https://doi.org/10.1038/s41597-024-04062-w</a>
+        <br>Data: <a href="https://zenodo.org/records/10653871">https://zenodo.org/records/10653871</a>
+      </p>
+
+      <h2>Credit</h2>
+      <p> 👨‍🏫 The webmap developed by <a href='https://vietducng.github.io/'>Viet Nguyen</a> (<a href = 'https://geo.uni-greifswald.de/en/eo'>University of Greifswald | Institute of Geography and Geology</a>).</p>
+
+      <p> 📦 The project hosted at <a href="https://github.com/VietDucNg/webmap_BSRLC"> Github repository.</a></p>
+    </div>
+
+    <!-- coordinate informaiton -->
+    <div id="coordInfo">Lat: , Long: </div>
+
+    <!-- link leaflet scipt-->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    <!-- link easy button scipt-->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <!-- link to jquery js-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- link to leaflet.sync -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.sync@0.2.4/L.Map.Sync.min.js"></script>
+    <!-- link to my js-->
+    <script type="module" src="scripts/main.js"></script>
+    <!-- link script to get device's location button-->
+    <script type="module" src="scripts/getLocation.js"></script>
+    <!-- link script to add legend-->
+    <script type="module" src="scripts/legend.js"></script>
+    <!-- link script to add tiled raster-->
+    <script type="module" src="scripts/tiledRast.js"></script>
+    <!-- link script to add tiled raster for map 2-->
+    <script type="module" src="scripts/tiledRast_map2.js"></script>
+    <!-- link script to split view function-->
+    <script type="module" src="scripts/splitView.js"></script>
+  </body>
+</html>

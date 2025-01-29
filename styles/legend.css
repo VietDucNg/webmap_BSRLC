@@ -1,0 +1,24 @@
+/* style legend */
+.info.legend {
+    position: fixed !important;
+    bottom: 100px;
+    right: 0px;
+    z-index: 1000;
+    padding: 10px;
+    background: white;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+.legend {
+  vertical-align: middle;
+}
+  
+.info.legend h4 {
+  margin: 0;
+  padding-bottom: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}  
