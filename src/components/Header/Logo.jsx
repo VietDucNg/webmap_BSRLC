@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 
 export default function Logo() {
   return (
-    <Stack direction={"row"} sx={{ gap: 1, color: "white" }}>
+    <Stack direction={"row"} sx={{ gap: 1, color: "header.contrastText" }}>
       <Typography sx={{ fontSize: "30px", mx: 1 }}>🍀</Typography>
       <Box>
         <Typography variant="h5" component={"h1"}>
