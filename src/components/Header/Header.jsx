@@ -2,7 +2,6 @@ import { Box, IconButton, Stack, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
-
 import Logo from "./Logo";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
@@ -38,7 +37,11 @@ const AppBar = styled(MuiAppBar, {
 
 export default function Header({ mode, setMode, open, handleDrawerOpen }) {
   return (
-    <AppBar position="fixed" open={open}>
+    <AppBar
+      position="fixed"
+      open={open}
+      sx={{ backgroundColor: "header.main" }}
+    >
       <Toolbar>
         <IconButton
           color="inherit"
@@ -54,30 +57,26 @@ export default function Header({ mode, setMode, open, handleDrawerOpen }) {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          Mini variant drawer
-        </Typography>
+        <Stack
+          direction={"row"}
+          sx={{
+            width: "100%",
+            flexWrap: "wrap",
+            gap: 1,
+            justifyContent: "space-between",
+          }}
+        >
+          <Logo />
+          <Box>
+            <IconButton
+              onClick={changeMode}
+              sx={{ color: "header.contrastText" }}
+            >
+              {mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+            </IconButton>
+          </Box>
+        </Stack>
       </Toolbar>
     </AppBar>
-
-    // <Stack
-    //   direction={"row"}
-    //   sx={{
-    //     flexWrap: "wrap",
-    //     gap: 1,
-    //     justifyContent: "space-between",
-    //     backgroundColor: "header.main",
-    //     padding: 1,
-    //     borderTopLeftRadius: 10,
-    //     borderTopRightRadius: 10,
-    //   }}
-    // >
-    //   <Logo />
-    //   <Box>
-    //     <IconButton onClick={changeMode} sx={{ color: "header.contrastText" }}>
-    //       {mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
-    //     </IconButton>
-    //   </Box>
-    // </Stack>
   );
 }
