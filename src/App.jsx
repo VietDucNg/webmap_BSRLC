@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, Container, Stack } from "@mui/material";
+import { CssBaseline, Container, Stack, Box } from "@mui/material";
 import getTheme from "./theme";
 import { useEffect, useMemo, useState } from "react";
 import Header from "./components/Header/Header";
@@ -34,19 +34,28 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="none" sx={{ my: 1, maxWidth: "1800px" }}>
+      <Container
+        maxWidth="none"
+        disableGutters
+        sx={{
+          maxWidth: "2000px",
+          minHeight: "800px",
+          height: "100vh",
+        }}
+      >
         <Header
           mode={mode}
           setMode={setMode}
           open={isLeftDrawerOpen}
           handleDrawerOpen={handleDrawerOpen}
         />
-        <Stack direction="row">
+
+        <Stack direction="row" sx={{ height: "100%" }}>
           <LeftDrawer
             open={isLeftDrawerOpen}
             handleDrawerClose={handleDrawerClose}
           />
-          <MainContent />
+          <MainContent isLeftDrawerOpen={isLeftDrawerOpen} />
         </Stack>
       </Container>
     </ThemeProvider>

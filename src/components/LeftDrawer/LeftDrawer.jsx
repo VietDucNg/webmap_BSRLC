@@ -40,6 +40,10 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
+  "& .MuiDrawer-paper": {
+    position: "relative",
+    height: "100%",
+  },
   variants: [
     {
       props: ({ open }) => open,

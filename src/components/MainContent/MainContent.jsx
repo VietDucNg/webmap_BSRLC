@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { DrawerHeader } from "../../utils/DrawerHeader";
 
 export default function MainContent() {
   return (
@@ -17,7 +16,6 @@ export default function MainContent() {
           }),
       }}
     >
-      <DrawerHeader />
       <Typography sx={{ marginBottom: 2 }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
