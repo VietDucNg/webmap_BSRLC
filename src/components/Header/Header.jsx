@@ -7,10 +7,6 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { drawerWidth } from "../LeftDrawer/LeftDrawer";
 
-function changeMode() {
-  setMode((prev) => (prev === "dark" ? "light" : "dark"));
-}
-
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme }) => ({
@@ -35,6 +31,10 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 export default function Header({ mode, setMode, open, handleDrawerOpen }) {
+  function changeMode() {
+    setMode((prev) => (prev === "dark" ? "light" : "dark"));
+  }
+
   return (
     <AppBar
       position="fixed"
