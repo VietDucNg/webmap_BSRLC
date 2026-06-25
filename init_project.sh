@@ -10,7 +10,7 @@ npm install @mui/material @emotion/react @emotion/styled
 npm install @fontsource/roboto
 npm install @mui/icons-material
 
-sed -i "/import '\.\/index\.css'/d" main.jsx
+sed -i "/import '\.\/index\.css'/d" src/main.jsx
 
 rm public/icons.svg
 rm src/assets/*
