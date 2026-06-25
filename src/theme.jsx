@@ -8,6 +8,10 @@ export default function getTheme(mode) {
         paper: "rgba(61, 122, 245, 0.1)",
         paperSolid: mode === "light" ? "rgb(217, 228, 253)" : "rgb(26, 37, 62)",
       },
+      header: {
+        main: mode === "light" ? "rgb(0, 47, 94)" : "rgb(205, 229, 250)",
+        contrastText: mode === "light" ? "white" : "black",
+      },
     },
     typography: {
       fontFamily: 'system-ui, "Segoe UI", Roboto, sans-serif',
