@@ -1,16 +1,15 @@
-import { Box, IconButton, Stack, Toolbar, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import Logo from "./Logo";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { drawerWidth } from "../LeftDrawer/LeftDrawer";
 
 function changeMode() {
   setMode((prev) => (prev === "dark" ? "light" : "dark"));
 }
-
-const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",

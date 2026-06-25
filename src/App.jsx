@@ -4,6 +4,7 @@ import getTheme from "./theme";
 import { useEffect, useMemo, useState } from "react";
 import Header from "./components/Header/Header";
 import LeftDrawer from "./components/LeftDrawer/LeftDrawer";
+import MainContent from "./components/MainContent/MainContent";
 
 function App() {
   // handle color mode
@@ -22,7 +23,7 @@ function App() {
   );
 
   // left drawer
-  const [isLeftDrawerOpen, setIsLeftDrawerOpen] = useState(false);
+  const [isLeftDrawerOpen, setIsLeftDrawerOpen] = useState(true);
   const handleDrawerOpen = () => {
     setIsLeftDrawerOpen(true);
   };
@@ -40,11 +41,12 @@ function App() {
           open={isLeftDrawerOpen}
           handleDrawerOpen={handleDrawerOpen}
         />
-        <Stack>
+        <Stack direction="row">
           <LeftDrawer
             open={isLeftDrawerOpen}
             handleDrawerClose={handleDrawerClose}
           />
+          <MainContent />
         </Stack>
       </Container>
     </ThemeProvider>
