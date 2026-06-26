@@ -10,6 +10,7 @@ export default function SplitViewBtn() {
   return (
     <Button
       variant="contained"
+      size="small"
       startIcon={
         isSplitMode ? <CropPortraitOutlinedIcon /> : <CompareOutlinedIcon />
       }

@@ -4,9 +4,9 @@ import getTheme from "./theme";
 import { useEffect, useMemo, useState } from "react";
 import Header from "./components/Header/Header";
 import LeftDrawer from "./components/LeftDrawer/LeftDrawer";
-import MainContent from "./components/MainContent/MainContent";
 import RightDrawer from "./components/RightDrawer/RightDrawer";
 import SplitViewContext from "./contexts/SplitViewContext";
+import Map from "./components/MainContent/Map";
 
 const initialMode = () => localStorage.getItem("mode") || "light";
 
@@ -66,7 +66,7 @@ export default function App() {
               open={isLeftDrawerOpen}
               toggleLeftDrawer={toggleLeftDrawer}
             />
-            <MainContent />
+            <Map />
             <RightDrawer
               isRightDrawerOpen={isRightDrawerOpen}
               toggleRightDrawer={toggleRightDrawer}

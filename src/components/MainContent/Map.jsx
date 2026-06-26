@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
 
-export default function MainContent() {
+export default function Map() {
   return (
     <Box
       component="main"

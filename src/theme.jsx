@@ -10,8 +10,8 @@ export default function getTheme(mode) {
           mode === "light" ? "rgb(217, 228, 253)" : "rgb(26, 37, 62)",
       },
       header: {
-        main: mode === "light" ? "rgb(0, 47, 94)" : "rgb(27, 149, 255)",
-        contrastText: mode === "light" ? "white" : "black",
+        main: "rgb(0, 47, 94)",
+        contrastText: "white",
       },
     },
     typography: {
