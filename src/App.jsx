@@ -6,12 +6,12 @@ import Header from "./components/Header/Header";
 import LeftDrawer from "./components/LeftDrawer/LeftDrawer";
 import MainContent from "./components/MainContent/MainContent";
 import RightDrawer from "./components/RightDrawer/RightDrawer";
+import SplitViewContext from "./contexts/SplitViewContext";
 
-function App() {
+const initialMode = () => localStorage.getItem("mode") || "light";
+
+export default function App() {
   // handle color mode
-  const initialMode = function () {
-    return localStorage.getItem("mode") || "light";
-  };
   const [mode, setMode] = useState(initialMode);
   const theme = useMemo(() => getTheme(mode), [mode]);
 
@@ -35,6 +35,13 @@ function App() {
     setIsRightDrawerOpen(newOpen);
   };
 
+  // split mode state
+  const [isSplitMode, setIsSplitMode] = useState(false);
+  const splitViewValue = useMemo(
+    () => ({ isSplitMode, setIsSplitMode }),
+    [isSplitMode],
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -47,26 +54,26 @@ function App() {
           height: "100vh",
         }}
       >
-        <Header
-          mode={mode}
-          setMode={setMode}
-          toggleRightDrawer={toggleRightDrawer}
-        />
-
-        <Stack direction="row" sx={{ height: "100%" }}>
-          <LeftDrawer
-            open={isLeftDrawerOpen}
-            toggleLeftDrawer={toggleLeftDrawer}
-          />
-          <MainContent isLeftDrawerOpen={isLeftDrawerOpen} />
-          <RightDrawer
-            isRightDrawerOpen={isRightDrawerOpen}
+        <SplitViewContext value={splitViewValue}>
+          <Header
+            mode={mode}
+            setMode={setMode}
             toggleRightDrawer={toggleRightDrawer}
           />
-        </Stack>
+
+          <Stack direction="row" sx={{ height: "100%" }}>
+            <LeftDrawer
+              open={isLeftDrawerOpen}
+              toggleLeftDrawer={toggleLeftDrawer}
+            />
+            <MainContent />
+            <RightDrawer
+              isRightDrawerOpen={isRightDrawerOpen}
+              toggleRightDrawer={toggleRightDrawer}
+            />
+          </Stack>
+        </SplitViewContext>
       </Container>
     </ThemeProvider>
   );
 }
-
-export default App;
