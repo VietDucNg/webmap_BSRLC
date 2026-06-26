@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, Container, Stack, Box } from "@mui/material";
+import { CssBaseline, Container, Stack } from "@mui/material";
 import getTheme from "./theme";
 import { useEffect, useMemo, useState } from "react";
 import Header from "./components/Header/Header";
@@ -24,12 +24,9 @@ function App() {
 
   // left drawer
   const [isLeftDrawerOpen, setIsLeftDrawerOpen] = useState(true);
-  const handleDrawerOpen = () => {
-    setIsLeftDrawerOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setIsLeftDrawerOpen(false);
-  };
+  function toggleDrawer() {
+    setIsLeftDrawerOpen(!isLeftDrawerOpen);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -43,18 +40,10 @@ function App() {
           height: "100vh",
         }}
       >
-        <Header
-          mode={mode}
-          setMode={setMode}
-          open={isLeftDrawerOpen}
-          handleDrawerOpen={handleDrawerOpen}
-        />
+        <Header mode={mode} setMode={setMode} />
 
         <Stack direction="row" sx={{ height: "100%" }}>
-          <LeftDrawer
-            open={isLeftDrawerOpen}
-            handleDrawerClose={handleDrawerClose}
-          />
+          <LeftDrawer open={isLeftDrawerOpen} toggleDrawer={toggleDrawer} />
           <MainContent isLeftDrawerOpen={isLeftDrawerOpen} />
         </Stack>
       </Container>

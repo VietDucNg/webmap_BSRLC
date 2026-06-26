@@ -1,12 +1,12 @@
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import { DrawerHeader } from "../../utils/DrawerHeader";
 
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 
 import Legend from "./Legend";
 
@@ -62,18 +62,12 @@ const Drawer = styled(MuiDrawer, {
   ],
 }));
 
-export default function LeftDrawer({ open, handleDrawerClose }) {
-  const theme = useTheme();
-
+export default function LeftDrawer({ open, toggleDrawer }) {
   return (
     <Drawer variant="permanent" open={open}>
       <DrawerHeader>
-        <IconButton onClick={handleDrawerClose}>
-          {theme.direction === "rtl" ? (
-            <ChevronRightIcon />
-          ) : (
-            <ChevronLeftIcon />
-          )}
+        <IconButton onClick={toggleDrawer}>
+          {open ? <ChevronLeftOutlinedIcon /> : <MenuOutlinedIcon />}
         </IconButton>
       </DrawerHeader>
       <Divider />
