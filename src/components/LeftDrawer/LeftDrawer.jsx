@@ -62,11 +62,11 @@ const Drawer = styled(MuiDrawer, {
   ],
 }));
 
-export default function LeftDrawer({ open, toggleDrawer }) {
+export default function LeftDrawer({ open, toggleLeftDrawer }) {
   return (
     <Drawer variant="permanent" open={open}>
       <DrawerHeader>
-        <IconButton onClick={toggleDrawer}>
+        <IconButton onClick={toggleLeftDrawer}>
           {open ? <ChevronLeftOutlinedIcon /> : <MenuOutlinedIcon />}
         </IconButton>
       </DrawerHeader>

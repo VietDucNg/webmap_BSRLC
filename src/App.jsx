@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import Header from "./components/Header/Header";
 import LeftDrawer from "./components/LeftDrawer/LeftDrawer";
 import MainContent from "./components/MainContent/MainContent";
+import RightDrawer from "./components/RightDrawer/RightDrawer";
 
 function App() {
   // handle color mode
@@ -24,9 +25,15 @@ function App() {
 
   // left drawer
   const [isLeftDrawerOpen, setIsLeftDrawerOpen] = useState(true);
-  function toggleDrawer() {
+  function toggleLeftDrawer() {
     setIsLeftDrawerOpen(!isLeftDrawerOpen);
   }
+
+  // right drawer
+  const [isRightDrawerOpen, setIsRightDrawerOpen] = useState(false);
+  const toggleRightDrawer = (newOpen) => () => {
+    setIsRightDrawerOpen(newOpen);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -40,11 +47,22 @@ function App() {
           height: "100vh",
         }}
       >
-        <Header mode={mode} setMode={setMode} />
+        <Header
+          mode={mode}
+          setMode={setMode}
+          toggleRightDrawer={toggleRightDrawer}
+        />
 
         <Stack direction="row" sx={{ height: "100%" }}>
-          <LeftDrawer open={isLeftDrawerOpen} toggleDrawer={toggleDrawer} />
+          <LeftDrawer
+            open={isLeftDrawerOpen}
+            toggleLeftDrawer={toggleLeftDrawer}
+          />
           <MainContent isLeftDrawerOpen={isLeftDrawerOpen} />
+          <RightDrawer
+            isRightDrawerOpen={isRightDrawerOpen}
+            toggleRightDrawer={toggleRightDrawer}
+          />
         </Stack>
       </Container>
     </ThemeProvider>

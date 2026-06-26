@@ -5,8 +5,9 @@ export default function getTheme(mode) {
     palette: {
       mode: mode,
       background: {
-        paper: "rgba(61, 122, 245, 0.1)",
-        paperSolid: mode === "light" ? "rgb(217, 228, 253)" : "rgb(26, 37, 62)",
+        paperCustom: "rgba(61, 122, 245, 0.1)",
+        paperCustomSolid:
+          mode === "light" ? "rgb(217, 228, 253)" : "rgb(26, 37, 62)",
       },
       header: {
         main: mode === "light" ? "rgb(0, 47, 94)" : "rgb(205, 229, 250)",

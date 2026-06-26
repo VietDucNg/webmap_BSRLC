@@ -1,10 +1,10 @@
-import { Box, IconButton, Stack } from "@mui/material";
+import { IconButton, Stack } from "@mui/material";
 import Logo from "./Logo";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import AboutBtn from "./AboutBtn";
 
-export default function Header({ mode, setMode }) {
+export default function Header({ mode, setMode, toggleRightDrawer }) {
   function changeMode() {
     setMode((prev) => (prev === "dark" ? "light" : "dark"));
   }
@@ -24,7 +24,7 @@ export default function Header({ mode, setMode }) {
         <IconButton onClick={changeMode} sx={{ color: "header.contrastText" }}>
           {mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
         </IconButton>
-        <AboutBtn />
+        <AboutBtn toggleRightDrawer={toggleRightDrawer} />
       </Stack>
     </Stack>
   );
