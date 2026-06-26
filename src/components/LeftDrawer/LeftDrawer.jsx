@@ -1,6 +1,5 @@
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
-import { DrawerHeader } from "../../utils/DrawerHeader";
 
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
@@ -11,6 +10,15 @@ import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import Legend from "./Legend";
 
 const drawerWidth = 240;
+
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
