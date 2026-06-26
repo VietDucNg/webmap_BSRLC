@@ -13,10 +13,7 @@ export default function Header({ mode, setMode, open, handleDrawerOpen }) {
     <Stack direction={"row"} sx={{ backgroundColor: "header.main", p: 2 }}>
       <Box sx={{ width: "50px" }}>
         <IconButton
-          color="inherit"
-          aria-label="open drawer"
           onClick={handleDrawerOpen}
-          edge="start"
           sx={[
             {
               color: "header.contrastText",

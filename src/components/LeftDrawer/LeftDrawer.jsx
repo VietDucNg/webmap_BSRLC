@@ -82,5 +82,3 @@ export default function LeftDrawer({ open, handleDrawerClose }) {
     </Drawer>
   );
 }
-
-export { drawerWidth };

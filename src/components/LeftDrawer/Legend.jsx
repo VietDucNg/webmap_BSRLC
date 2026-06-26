@@ -36,7 +36,7 @@ export default function Legend({ isLeftDrawerOpen }) {
       <List dense>
         {landCoverClasses.map((item) => (
           <ListItem key={item.name} disableGutters>
-            <Stack direction="row" spacing={1} alignItems="center">
+            <Stack direction="row" spacing={1}>
               <Box
                 sx={{
                   width: 18,
