@@ -1,7 +1,5 @@
 import { useEffect, useRef } from "react";
 import OLMap from "ol/Map";
-import View from "ol/View";
-import { fromLonLat } from "ol/proj";
 import "ol/ol.css";
 import "ol-layerswitcher/dist/ol-layerswitcher.css";
 import { Box, GlobalStyles } from "@mui/material";
@@ -10,7 +8,7 @@ import {
   createLayerSwitcher,
   layerSwitcherStyles,
 } from "../../map/layerSwitcher";
-import { initalView } from "../../map/initialView";
+import { initialView } from "../../map/initialView";
 
 export default function Map() {
   const mapRef = useRef(null);
@@ -22,7 +20,7 @@ export default function Map() {
     mapInstance.current = new OLMap({
       target: mapRef.current,
       layers: [basemapGroup],
-      view: initalView,
+      view: initialView,
     });
 
     mapInstance.current.addControl(createLayerSwitcher());
