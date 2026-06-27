@@ -52,6 +52,8 @@ export default function App() {
           maxWidth: "2000px",
           minHeight: "800px",
           height: "100vh",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <SplitViewContext value={splitViewValue}>
@@ -61,7 +63,7 @@ export default function App() {
             toggleRightDrawer={toggleRightDrawer}
           />
 
-          <Stack direction="row" sx={{ height: "100%" }}>
+          <Stack direction="row" sx={{ flex: 1 }}>
             <LeftDrawer
               open={isLeftDrawerOpen}
               toggleLeftDrawer={toggleLeftDrawer}
