@@ -67,7 +67,7 @@ export default function Map() {
 
     mapInstance.current.addControl(
       new LayerSwitcher({
-        activationMode: "click",
+        // activationMode: "click",
         startActive: false,
         tipLabel: "Layer Controls",
         groupSelectStyle: "group",
@@ -86,6 +86,7 @@ export default function Map() {
     <>
       <GlobalStyles
         styles={(theme) => ({
+          // style layer switcher
           ".layer-switcher": {
             top: "8px",
             right: "8px",
@@ -105,6 +106,7 @@ export default function Map() {
             border: "1px solid lightgray ",
             backgroundSize: "32px 32px",
             backgroundPosition: "center",
+            backgroundColor: theme.palette.background.paper,
           },
           ".layer-switcher button:hover": {
             border: "1px solid black",
@@ -134,10 +136,11 @@ export default function Map() {
             flexDirection: "column",
             alignItems: "flex-start",
           },
-          ".layer-switcher.shown.layer-switcher-activation-mode-click > button,":
+          // style zoom buttons
+          ".ol-zoom button, .ol-zoom button:hover, .ol-zoom button:focus, .ol-zoom button:active":
             {
-              backgroundColor: "white",
-              left: "-16px",
+              backgroundColor: theme.palette.background.paper,
+              color: theme.palette.text.primary,
             },
         })}
       />
