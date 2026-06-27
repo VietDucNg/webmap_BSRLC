@@ -84,7 +84,7 @@ export default function RightDrawer({ isRightDrawerOpen, toggleRightDrawer }) {
         "& .MuiDrawer-paper": {
           height: "min-content",
           borderRadius: "10px",
-          marginRight: "15px",
+          marginRight: "10px",
           top: `calc(${theme.mixins.toolbar.minHeight}px + 30px)`,
           boxShadow: 3,
         },
