@@ -4,6 +4,7 @@ import { XYZ } from "ol/source";
 
 const bsrlcLayer = new TileLayer({
   title: "BSRLC Layer",
+  type: "overlay",
   visible: true,
   source: new XYZ({
     url: "https://ifzo-gis.geo.uni-greifswald.de/server/rest/services/Hosted/BSRLC_2014_web_tif/MapServer/tile/{z}/{y}/{x}",
