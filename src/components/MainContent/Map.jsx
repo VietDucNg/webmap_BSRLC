@@ -2,12 +2,13 @@ import { useEffect, useRef } from "react";
 import OLMap from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
+import LayerGroup from "ol/layer/Group";
 import XYZ from "ol/source/XYZ";
 import { fromLonLat } from "ol/proj";
 import LayerSwitcher from "ol-layerswitcher";
 import "ol/ol.css";
 import "ol-layerswitcher/dist/ol-layerswitcher.css";
-import { Box } from "@mui/material";
+import { Box, GlobalStyles } from "@mui/material";
 
 const BASEMAPS = [
   {
@@ -35,7 +36,7 @@ export default function Map() {
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
 
-    const layers = BASEMAPS.map(
+    const baseLayers = BASEMAPS.map(
       (basemap) =>
         new TileLayer({
           title: basemap.title,
@@ -49,9 +50,14 @@ export default function Map() {
         }),
     );
 
+    const basemapGroup = new LayerGroup({
+      title: "Basemaps",
+      layers: baseLayers,
+    });
+
     mapInstance.current = new OLMap({
       target: mapRef.current,
-      layers,
+      layers: [basemapGroup],
       view: new View({
         center: fromLonLat([17.923505641895904, 55.871116255137544]),
         zoom: 5,
@@ -62,8 +68,9 @@ export default function Map() {
     mapInstance.current.addControl(
       new LayerSwitcher({
         activationMode: "click",
-        startActive: true,
-        tipLabel: "Basemaps",
+        startActive: false,
+        tipLabel: "Layer Controls",
+        groupSelectStyle: "group",
       }),
     );
 
@@ -76,12 +83,71 @@ export default function Map() {
   }, []);
 
   return (
-    <Box
-      ref={mapRef}
-      sx={{
-        height: "100%",
-        width: "100%",
-      }}
-    />
+    <>
+      <GlobalStyles
+        styles={(theme) => ({
+          ".layer-switcher": {
+            top: "8px",
+            right: "8px",
+            backgroundColor: "transparent",
+            overflow: "visible !important",
+          },
+          ".layer-switcher .panel": {
+            backgroundColor: theme.palette.background.paper,
+            border: "1px solid lightgray",
+            borderRadius: "12px",
+            padding: "16px",
+          },
+          ".layer-switcher button": {
+            width: "42px",
+            height: "42px",
+            borderRadius: "12px ",
+            border: "1px solid lightgray ",
+            backgroundSize: "32px 32px",
+            backgroundPosition: "center",
+          },
+          ".layer-switcher button:hover": {
+            border: "1px solid black",
+          },
+
+          ".layer-switcher .panel ul": {
+            margin: 0,
+            padding: 0,
+          },
+
+          ".layer-switcher li": {
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+          },
+
+          ".layer-switcher li label": {
+            padding: 0,
+          },
+          ".layer-switcher li label:hover:not(.disabled)": {
+            cursor: "pointer",
+          },
+          ".layer-switcher li input": {
+            position: "static ",
+          },
+          ".layer-switcher .group": {
+            flexDirection: "column",
+            alignItems: "flex-start",
+          },
+          ".layer-switcher.shown.layer-switcher-activation-mode-click > button,":
+            {
+              backgroundColor: "white",
+              left: "-16px",
+            },
+        })}
+      />
+      <Box
+        ref={mapRef}
+        sx={{
+          height: "100%",
+          width: "100%",
+        }}
+      />
+    </>
   );
 }
