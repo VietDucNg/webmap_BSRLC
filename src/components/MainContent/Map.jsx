@@ -9,6 +9,7 @@ import {
   layerSwitcherStyles,
 } from "../../map/layerSwitcher";
 import { initialView } from "../../map/initialView";
+import { bsrlcGroup } from "../../map/bsrlcLayer";
 
 export default function Map() {
   const mapRef = useRef(null);
@@ -19,7 +20,7 @@ export default function Map() {
 
     mapInstance.current = new OLMap({
       target: mapRef.current,
-      layers: [basemapGroup],
+      layers: [basemapGroup, bsrlcGroup],
       view: initialView,
     });
 

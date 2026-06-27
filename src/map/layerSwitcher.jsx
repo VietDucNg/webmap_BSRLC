@@ -2,7 +2,7 @@ import LayerSwitcher from "ol-layerswitcher";
 
 export function createLayerSwitcher() {
   return new LayerSwitcher({
-    // activationMode: "click",
+    activationMode: "click",
     startActive: false,
     tipLabel: "Layer Controls",
     groupSelectStyle: "group",
@@ -56,10 +56,8 @@ export const layerSwitcherStyles = (theme) => ({
     flexDirection: "column",
     alignItems: "flex-start",
   },
-  ".ol-zoom button, .ol-zoom button:hover, .ol-zoom button:focus, .ol-zoom button:active":
-    {
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.text.primary,
-      border: `1px solid ${theme.palette.text.primary}`,
-    },
+  ".layer-switcher.shown.layer-switcher-activation-mode-click > button,": {
+    backgroundColor: "white",
+    left: "-15px",
+  },
 });
