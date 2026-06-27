@@ -28,6 +28,7 @@ export const layerSwitcherStyles = (theme) => ({
       width: "42px",
       height: "42px",
       borderRadius: "12px",
+      border: `1px solid ${theme.palette.grey[400]}`,
       backgroundSize: "32px 32px",
       backgroundPosition: "center",
       backgroundColor: theme.palette.background.paper,
