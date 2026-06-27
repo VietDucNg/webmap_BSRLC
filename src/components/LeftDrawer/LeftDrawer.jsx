@@ -8,6 +8,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 
 import Legend from "./Legend";
+import OpacityControl from "./OpacityControl";
 
 const drawerWidth = 240;
 
@@ -81,6 +82,7 @@ export default function LeftDrawer({ open, toggleLeftDrawer }) {
       <Divider />
       <Legend isLeftDrawerOpen={open} />
       <Divider />
+      <OpacityControl isLeftDrawerOpen={open} />
     </Drawer>
   );
 }

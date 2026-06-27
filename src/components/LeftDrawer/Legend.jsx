@@ -27,7 +27,6 @@ export default function Legend({ isLeftDrawerOpen }) {
   return (
     <Box sx={{ p: 2 }}>
       <Collapse orientation="horizontal" in={isLeftDrawerOpen}>
-        {" "}
         <Typography variant="h6" gutterBottom>
           Land Cover Classes
         </Typography>
