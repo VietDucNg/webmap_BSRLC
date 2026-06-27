@@ -22,15 +22,16 @@ export const layerSwitcherStyles = (theme) => ({
     borderRadius: "12px",
     padding: "16px",
   },
-  ".layer-switcher button": {
-    width: "42px",
-    height: "42px",
-    borderRadius: "12px",
-    border: "1px solid lightgray",
-    backgroundSize: "32px 32px",
-    backgroundPosition: "center",
-    backgroundColor: theme.palette.background.paper,
-  },
+  ".layer-switcher button, .layer-switcher button:hover, .layer-switcher button:focus, .layer-switcher.shown.layer-switcher-activation-mode-click > button, .layer-switcher.shown.layer-switcher-activation-mode-click > button:hover, .layer-switcher.shown.layer-switcher-activation-mode-click > button:focus":
+    {
+      width: "42px",
+      height: "42px",
+      borderRadius: "12px",
+      border: "1px solid lightgray",
+      backgroundSize: "32px 32px",
+      backgroundPosition: "center",
+      backgroundColor: theme.palette.background.paper,
+    },
   ".layer-switcher button:hover": {
     border: "1px solid black",
   },
@@ -56,7 +57,7 @@ export const layerSwitcherStyles = (theme) => ({
     flexDirection: "column",
     alignItems: "flex-start",
   },
-  ".layer-switcher.shown.layer-switcher-activation-mode-click > button,": {
+  ".layer-switcher.shown.layer-switcher-activation-mode-click > button": {
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.text.primary,
     left: "-15px",
