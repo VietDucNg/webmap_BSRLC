@@ -35,15 +35,25 @@ export const layerSwitcherStyles = (theme) => ({
   ".layer-switcher button:hover": {
     border: "1px solid black",
   },
-  ".layer-switcher .panel ul": {
+  ".layer-switcher .panel > ul:first-of-type": {
     margin: 0,
     padding: 0,
+    display: "flex",
+    flexDirection: "column",
+    gap: "15px",
   },
-  ".layer-switcher li": {
+  ".layer-switcher .panel .group": {
+    display: "flex",
+    alignItems: "start",
+    gap: "5px",
+  },
+
+  ".layer-switcher .panel .layer": {
     display: "flex",
     alignItems: "center",
-    gap: "10px",
+    gap: "5px",
   },
+
   ".layer-switcher li label": {
     padding: 0,
   },
