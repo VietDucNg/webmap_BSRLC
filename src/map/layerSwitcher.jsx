@@ -57,7 +57,8 @@ export const layerSwitcherStyles = (theme) => ({
     alignItems: "flex-start",
   },
   ".layer-switcher.shown.layer-switcher-activation-mode-click > button,": {
-    backgroundColor: "white",
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
     left: "-15px",
   },
 });
