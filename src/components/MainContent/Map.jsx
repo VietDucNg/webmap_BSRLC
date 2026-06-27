@@ -43,7 +43,6 @@ export default function Map() {
             {
               backgroundColor: theme.palette.background.paper,
               color: theme.palette.text.primary,
-              border: `1px solid ${theme.palette.text.primary}`,
             },
         })}
       />
