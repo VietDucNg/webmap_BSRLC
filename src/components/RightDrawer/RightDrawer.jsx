@@ -85,7 +85,7 @@ export default function RightDrawer({ isRightDrawerOpen, toggleRightDrawer }) {
           height: "min-content",
           borderRadius: "10px",
           marginRight: "10px",
-          top: `calc(${theme.mixins.toolbar.minHeight}px + 30px)`,
+          top: `calc(${theme.mixins.toolbar.minHeight}px + 40px)`,
           boxShadow: 3,
         },
       })}
