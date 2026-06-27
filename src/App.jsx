@@ -6,7 +6,7 @@ import Header from "./components/Header/Header";
 import LeftDrawer from "./components/LeftDrawer/LeftDrawer";
 import RightDrawer from "./components/RightDrawer/RightDrawer";
 import SplitViewContext from "./contexts/SplitViewContext";
-import Main from "./components/MainContent/Main";
+import MainContent from "./components/MainContent/MainContent";
 
 const initialMode = () => localStorage.getItem("mode") || "light";
 
@@ -68,7 +68,7 @@ export default function App() {
               open={isLeftDrawerOpen}
               toggleLeftDrawer={toggleLeftDrawer}
             />
-            <Main />
+            <MainContent />
             <RightDrawer
               isRightDrawerOpen={isRightDrawerOpen}
               toggleRightDrawer={toggleRightDrawer}
