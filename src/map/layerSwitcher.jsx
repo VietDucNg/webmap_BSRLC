@@ -1,4 +1,5 @@
 import LayerSwitcher from "ol-layerswitcher";
+import { none } from "ol/centerconstraint";
 
 export function createLayerSwitcher() {
   return new LayerSwitcher({
@@ -27,10 +28,10 @@ export const layerSwitcherStyles = (theme) => ({
       width: "42px",
       height: "42px",
       borderRadius: "12px",
-      border: "1px solid lightgray",
       backgroundSize: "32px 32px",
       backgroundPosition: "center",
       backgroundColor: theme.palette.background.paper,
+      cursor: "pointer",
     },
   ".layer-switcher button:hover": {
     border: "1px solid black",
