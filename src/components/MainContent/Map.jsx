@@ -10,6 +10,7 @@ import {
   createLayerSwitcher,
   layerSwitcherStyles,
 } from "../../map/layerSwitcher";
+import { initalView } from "../../map/initialView";
 
 export default function Map() {
   const mapRef = useRef(null);
@@ -21,11 +22,7 @@ export default function Map() {
     mapInstance.current = new OLMap({
       target: mapRef.current,
       layers: [basemapGroup],
-      view: new View({
-        center: fromLonLat([17.923505641895904, 55.871116255137544]),
-        zoom: 5,
-        projection: "EPSG:3857",
-      }),
+      view: initalView,
     });
 
     mapInstance.current.addControl(createLayerSwitcher());
