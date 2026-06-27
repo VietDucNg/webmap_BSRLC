@@ -5,7 +5,7 @@ export function createLayerSwitcher() {
     activationMode: "click",
     startActive: false,
     tipLabel: "Layer Controls",
-    groupSelectStyle: "group",
+    groupSelectStyle: "none",
   });
 }
 
