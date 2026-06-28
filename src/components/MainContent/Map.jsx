@@ -3,7 +3,7 @@ import OLMap from "ol/Map";
 import "ol/ol.css";
 import "ol-layerswitcher/dist/ol-layerswitcher.css";
 import { Box, GlobalStyles } from "@mui/material";
-import MyLocationBtn from "./MyLocationBtn";
+import MyLocationBtn from "../utils/MyLocationBtn";
 import { createBasemapGroup } from "../../map/createBasemapGroup";
 import { createMyLocation } from "../../map/createMyLocation";
 import {
