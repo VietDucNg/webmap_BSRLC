@@ -3,7 +3,9 @@ import OLMap from "ol/Map";
 import "ol/ol.css";
 import "ol-layerswitcher/dist/ol-layerswitcher.css";
 import { Box, GlobalStyles } from "@mui/material";
+import MyLocationBtn from "./MyLocationBtn";
 import { createBasemapGroup } from "../../map/createBasemapGroup";
+import { createMyLocation } from "../../map/createMyLocation";
 import {
   createLayerSwitcher,
   layerSwitcherStyles,
@@ -22,6 +24,7 @@ export default function Map() {
   const bsrlcGroupRef = useRef(null);
   const bsrlcLayerRef = useRef(null);
   const bsrlcSourceRef = useRef(null);
+  const geolocationRef = useRef(null);
 
   // create map once on mount
   useEffect(() => {
@@ -33,10 +36,13 @@ export default function Map() {
     bsrlcLayerRef.current = layer;
     bsrlcSourceRef.current = source;
 
+    const view = createView();
+    geolocationRef.current = createMyLocation(view);
+
     mapInstance.current = new OLMap({
       target: mapRef.current,
       layers: [createBasemapGroup(), bsrlcGroupRef.current],
-      view: createView(),
+      view,
     });
 
     mapInstance.current.addControl(createLayerSwitcher());
@@ -78,12 +84,23 @@ export default function Map() {
         })}
       />
       <Box
-        ref={mapRef}
         sx={{
           height: "100%",
           width: "100%",
+          position: "relative",
         }}
-      />
+      >
+        <Box
+          ref={mapRef}
+          sx={{
+            height: "100%",
+            width: "100%",
+          }}
+        />
+        <MyLocationBtn
+          onClick={() => geolocationRef.current?.setTracking(true)}
+        />
+      </Box>
     </>
   );
 }
