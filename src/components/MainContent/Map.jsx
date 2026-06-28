@@ -11,7 +11,7 @@ import {
   layerSwitcherStyles,
 } from "../../map/createLayerSwitcher";
 import { createView } from "../../map/createView";
-import { CreateBsrlcGroup } from "../../map/createBsrlcGroup";
+import { CreateBsrlcGroup, getBsrlcLayerUrl } from "../../map/createBsrlcGroup";
 import { YearAContext } from "../../contexts/YearAContext";
 import { OpacityContext } from "../../contexts/OpacityContext";
 import ScaleLine from "ol/control/ScaleLine";
@@ -64,9 +64,7 @@ export default function Map() {
   useEffect(() => {
     if (!bsrlcSourceRef.current) return;
 
-    bsrlcSourceRef.current.setUrl(
-      `https://ifzo-gis.geo.uni-greifswald.de/server/rest/services/Hosted/BSRLC_${yearA}_web_tif/MapServer/tile/{z}/{y}/{x}`,
-    );
+    bsrlcSourceRef.current.setUrl(getBsrlcLayerUrl(yearA));
   }, [yearA]);
 
   // update bsrlc layer opacity on opacity change

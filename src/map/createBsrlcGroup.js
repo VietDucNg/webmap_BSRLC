@@ -2,9 +2,16 @@ import LayerGroup from "ol/layer/Group";
 import TileLayer from "ol/layer/Tile";
 import { XYZ } from "ol/source";
 
+const BSRLC_LAYER_URL_TEMPLATE =
+  "https://ifzo-gis.geo.uni-greifswald.de/server/rest/services/Hosted/BSRLC_{year}_web_tif/MapServer/tile/{z}/{y}/{x}";
+
+export function getBsrlcLayerUrl(yearA) {
+  return BSRLC_LAYER_URL_TEMPLATE.replace("{year}", yearA);
+}
+
 export function CreateBsrlcGroup(yearA) {
   const source = new XYZ({
-    url: `https://ifzo-gis.geo.uni-greifswald.de/server/rest/services/Hosted/BSRLC_${yearA}_web_tif/MapServer/tile/{z}/{y}/{x}`,
+    url: getBsrlcLayerUrl(yearA),
     attributions:
       "Vu-Dong Pham, Farina de Waard, Fabian Thiel, Bernd Bobertz, Christina Hellmann, Duc-Viet Nguyen, Felix Beer, M. Arasumani, Marcel Schwieder, Jörg Hartleib, David Frantz & Sebastian van der Linden",
     maxZoom: 15,
