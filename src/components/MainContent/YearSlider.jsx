@@ -42,7 +42,9 @@ export default function YearSlider() {
           <CalendarTodayIcon />
           <Typography> TEMPORAL SELECTION</Typography>
         </Stack>
-        <Button variant="contained">{yearA}</Button>
+        <Button variant="contained" sx={{ pointerEvents: "none" }}>
+          {yearA}
+        </Button>
       </Stack>
 
       <Box sx={{ px: 1 }}>
