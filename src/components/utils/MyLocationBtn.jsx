@@ -13,6 +13,7 @@ export default function MyLocationBtn({ onClick }) {
         left: "8px",
         width: "24px",
         height: "24px",
+        borderRadius: "4px",
         border: `1px solid ${theme.palette.grey[400]}`,
         backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.primary,
