@@ -25,7 +25,8 @@ export default function YearSlider() {
   return (
     <Box
       sx={{
-        py: 2,
+        paddingTop: 2,
+        paddingBottom: 1,
         px: 3,
         position: "absolute",
         bottom: 30,
