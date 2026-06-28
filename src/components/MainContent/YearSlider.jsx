@@ -28,7 +28,7 @@ export default function YearSlider() {
         py: 2,
         px: 3,
         position: "absolute",
-        bottom: 10,
+        bottom: 30,
         backgroundColor: "background.paper",
         width: "400px",
         left: "50%",

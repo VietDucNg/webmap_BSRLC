@@ -93,6 +93,12 @@ export default function Map() {
               backgroundColor: theme.palette.background.paper,
               color: theme.palette.text.primary,
             },
+          ".ol-scale-line": {
+            bottom: 30,
+          },
+          ".ol-attribution": {
+            bottom: "3px",
+          },
         })}
       />
       <Box
