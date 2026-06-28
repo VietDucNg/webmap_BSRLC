@@ -15,6 +15,7 @@ import { CreateBsrlcGroup } from "../../map/createBsrlcGroup";
 import { YearAContext } from "../../contexts/YearAContext";
 import { OpacityContext } from "../../contexts/OpacityContext";
 import ScaleLine from "ol/control/ScaleLine";
+import HomeBtn from "../utils/HomeBtn";
 
 export default function Map() {
   const { yearA } = useContext(YearAContext);
@@ -26,6 +27,7 @@ export default function Map() {
   const bsrlcLayerRef = useRef(null);
   const bsrlcSourceRef = useRef(null);
   const geolocationRef = useRef(null);
+  const viewRef = useRef(null);
 
   // create map once on mount
   useEffect(() => {
@@ -38,6 +40,7 @@ export default function Map() {
     bsrlcSourceRef.current = source;
 
     const view = createView();
+    viewRef.current = view;
     geolocationRef.current = createMyLocation(view);
 
     mapInstance.current = new OLMap({
@@ -102,6 +105,7 @@ export default function Map() {
         <MyLocationBtn
           onClick={() => geolocationRef.current?.setTracking(true)}
         />
+        <HomeBtn view={viewRef} />
       </Box>
     </>
   );
