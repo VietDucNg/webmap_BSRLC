@@ -14,6 +14,7 @@ import { createView } from "../../map/createView";
 import { CreateBsrlcGroup } from "../../map/createBsrlcGroup";
 import { YearAContext } from "../../contexts/YearAContext";
 import { OpacityContext } from "../../contexts/OpacityContext";
+import ScaleLine from "ol/control/ScaleLine";
 
 export default function Map() {
   const { yearA } = useContext(YearAContext);
@@ -46,6 +47,7 @@ export default function Map() {
     });
 
     mapInstance.current.addControl(createLayerSwitcher());
+    mapInstance.current.addControl(new ScaleLine());
 
     return () => {
       if (mapInstance.current) {
