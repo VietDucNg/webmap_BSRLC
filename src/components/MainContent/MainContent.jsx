@@ -17,7 +17,7 @@ export default function MainContent() {
       <Box sx={{ height: "100%", position: "relative" }}>
         <YearAContext value={{ yearA, setYearA }}>
           <Map />
-          <YearSlider yearA={yearA} setYearA={setYearA} />
+          <YearSlider />
         </YearAContext>
       </Box>
     </Box>

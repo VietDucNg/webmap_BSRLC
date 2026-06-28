@@ -1,6 +1,8 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import Slider from "@mui/material/Slider";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import { useContext } from "react";
+import { YearAContext } from "../../contexts/YearAContext";
 
 const marks = [
   {
@@ -17,7 +19,9 @@ const marks = [
   },
 ];
 
-export default function YearSlider({ yearA, setYearA }) {
+export default function YearSlider() {
+  const { yearA, setYearA } = useContext(YearAContext);
+
   return (
     <Box
       sx={{
