@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import Map from "./Map";
 import YearSlider from "./YearSlider";
 import { useState } from "react";
+import { YearAContext } from "../../contexts/YearAContext";
 
 export default function MainContent() {
   const [yearA, setYearA] = useState(2000);
@@ -14,8 +15,10 @@ export default function MainContent() {
       }}
     >
       <Box sx={{ height: "100%", position: "relative" }}>
-        <Map />
-        <YearSlider yearA={yearA} setYearA={setYearA} />
+        <YearAContext value={{ yearA, setYearA }}>
+          <Map />
+          <YearSlider yearA={yearA} setYearA={setYearA} />
+        </YearAContext>
       </Box>
     </Box>
   );
