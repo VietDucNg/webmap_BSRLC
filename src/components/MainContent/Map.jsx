@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import OLMap from "ol/Map";
 import "ol/ol.css";
 import "ol-layerswitcher/dist/ol-layerswitcher.css";
@@ -16,10 +16,13 @@ import { YearAContext } from "../../contexts/YearAContext";
 import { OpacityContext } from "../../contexts/OpacityContext";
 import ScaleLine from "ol/control/ScaleLine";
 import HomeBtn from "../utils/HomeBtn";
+import { toLonLat } from "ol/proj";
+import MouseCoordBox from "../utils/MouseCoordBox";
 
 export default function Map() {
   const { yearA } = useContext(YearAContext);
   const { opacity } = useContext(OpacityContext);
+  const [mouseCoord, setMouseCoord] = useState(null);
 
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
@@ -51,6 +54,12 @@ export default function Map() {
 
     mapInstance.current.addControl(createLayerSwitcher());
     mapInstance.current.addControl(new ScaleLine());
+
+    // get mouse coordinate event
+    mapInstance.current.on("pointermove", (event) => {
+      const lonLat = toLonLat(event.coordinate);
+      setMouseCoord(lonLat);
+    });
 
     return () => {
       if (mapInstance.current) {
@@ -104,6 +113,7 @@ export default function Map() {
           onClick={() => geolocationRef.current?.setTracking(true)}
         />
         <HomeBtn view={viewRef} />
+        <MouseCoordBox mouseCoord={mouseCoord} />
       </Box>
     </>
   );
