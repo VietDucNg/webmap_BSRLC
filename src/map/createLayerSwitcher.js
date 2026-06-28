@@ -34,7 +34,7 @@ export const layerSwitcherStyles = (theme) => ({
       cursor: "pointer",
     },
   ".layer-switcher button:hover": {
-    border: "1px solid black",
+    border: `1px solid ${theme.palette.grey[700]}`,
   },
   ".layer-switcher .panel > ul:first-of-type": {
     margin: 0,
