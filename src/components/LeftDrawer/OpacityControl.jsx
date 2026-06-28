@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Box, Collapse, Slider, Typography } from "@mui/material";
+import { OpacityContext } from "../../contexts/OpacityContext";
 
 const marks = [
   {
@@ -12,6 +14,8 @@ const marks = [
 ];
 
 export default function OpacityControl({ isLeftDrawerOpen }) {
+  const { opacity, setOpacity } = useContext(OpacityContext);
+
   return (
     <Box sx={{ p: 2 }}>
       <Collapse orientation="horizontal" in={isLeftDrawerOpen}>
@@ -22,7 +26,8 @@ export default function OpacityControl({ isLeftDrawerOpen }) {
 
       <Box sx={{ px: 1 }}>
         <Slider
-          defaultValue={0}
+          value={opacity}
+          onChange={(event, value) => setOpacity(value)}
           step={1}
           valueLabelDisplay="auto"
           marks={isLeftDrawerOpen ? marks : []}

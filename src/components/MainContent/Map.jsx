@@ -11,22 +11,26 @@ import {
 import { createView } from "../../map/createView";
 import { CreateBsrlcGroup } from "../../map/createBsrlcGroup";
 import { YearAContext } from "../../contexts/YearAContext";
+import { OpacityContext } from "../../contexts/OpacityContext";
 
 export default function Map() {
   const { yearA } = useContext(YearAContext);
+  const { opacity } = useContext(OpacityContext);
 
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
   const bsrlcGroupRef = useRef(null);
+  const bsrlcLayerRef = useRef(null);
   const bsrlcSourceRef = useRef(null);
 
   // create map once on mount
   useEffect(() => {
     if (!mapRef.current) return;
 
-    const { group, source } = CreateBsrlcGroup(yearA);
+    const { group, layer, source } = CreateBsrlcGroup(yearA);
 
     bsrlcGroupRef.current = group;
+    bsrlcLayerRef.current = layer;
     bsrlcSourceRef.current = source;
 
     mapInstance.current = new OLMap({
@@ -53,6 +57,13 @@ export default function Map() {
       `https://ifzo-gis.geo.uni-greifswald.de/server/rest/services/Hosted/BSRLC_${yearA}_web_tif/MapServer/tile/{z}/{y}/{x}`,
     );
   }, [yearA]);
+
+  // update bsrlc layer opacity on opacity change
+  useEffect(() => {
+    if (!bsrlcLayerRef.current) return;
+
+    bsrlcLayerRef.current.setOpacity(opacity / 100);
+  }, [opacity]);
 
   return (
     <>

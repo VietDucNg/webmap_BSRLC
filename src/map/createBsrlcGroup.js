@@ -14,6 +14,7 @@ export function CreateBsrlcGroup(yearA) {
     title: "BSRLC Layer",
     type: "overlay",
     visible: true,
+    opacity: 1,
     source,
   });
 
