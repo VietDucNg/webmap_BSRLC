@@ -12,8 +12,7 @@ export function getBsrlcLayerUrl(yearA) {
 export function CreateBsrlcGroup(yearA) {
   const source = new XYZ({
     url: getBsrlcLayerUrl(yearA),
-    attributions:
-      "Vu-Dong Pham, Farina de Waard, Fabian Thiel, Bernd Bobertz, Christina Hellmann, Duc-Viet Nguyen, Felix Beer, M. Arasumani, Marcel Schwieder, Jörg Hartleib, David Frantz & Sebastian van der Linden",
+    attributions: "(Pham et al., 2024)",
     maxZoom: 15,
   });
 
