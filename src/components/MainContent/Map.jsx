@@ -52,8 +52,6 @@ export default function Map() {
     bsrlcSourceRef.current.setUrl(
       `https://ifzo-gis.geo.uni-greifswald.de/server/rest/services/Hosted/BSRLC_${yearA}_web_tif/MapServer/tile/{z}/{y}/{x}`,
     );
-
-    bsrlcSourceRef.current.refresh();
   }, [yearA]);
 
   return (
