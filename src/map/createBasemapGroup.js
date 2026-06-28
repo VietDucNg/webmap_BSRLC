@@ -35,7 +35,9 @@ const baseLayers = BASEMAPS.map(
     }),
 );
 
-export const basemapGroup = new LayerGroup({
-  title: "Basemaps",
-  layers: baseLayers,
-});
+export function createBasemapGroup() {
+  return new LayerGroup({
+    title: "Basemaps",
+    layers: baseLayers,
+  });
+}

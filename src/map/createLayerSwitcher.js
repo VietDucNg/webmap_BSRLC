@@ -1,5 +1,4 @@
 import LayerSwitcher from "ol-layerswitcher";
-import { none } from "ol/centerconstraint";
 
 export function createLayerSwitcher() {
   return new LayerSwitcher({
