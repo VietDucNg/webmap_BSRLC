@@ -1,8 +1,5 @@
 import { createContext } from "react";
 
-const SplitViewContext = createContext({
-  isSplitMode: false,
-  setIsSplitMode: () => {},
-});
+const SplitViewContext = createContext(null);
 
 export default SplitViewContext;
