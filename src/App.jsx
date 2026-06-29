@@ -7,7 +7,7 @@ import LeftDrawer from "./components/LeftDrawer/LeftDrawer";
 import RightDrawer from "./components/RightDrawer/RightDrawer";
 import SplitViewContext from "./contexts/SplitViewContext";
 import MainContent from "./components/MainContent/MainContent";
-import { OpacityContext } from "./contexts/OpacityContext";
+import { OpacityContextProvider } from "./contexts/OpacityContextProvider";
 
 const initialMode = () => localStorage.getItem("mode") || "light";
 
@@ -43,9 +43,6 @@ export default function App() {
     [isSplitMode],
   );
 
-  // opacity state
-  const [opacity, setOpacity] = useState(100);
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -61,7 +58,7 @@ export default function App() {
         }}
       >
         <SplitViewContext value={splitViewValue}>
-          <OpacityContext value={{ opacity, setOpacity }}>
+          <OpacityContextProvider>
             <Header
               mode={mode}
               setMode={setMode}
@@ -79,7 +76,7 @@ export default function App() {
                 toggleRightDrawer={toggleRightDrawer}
               />
             </Stack>
-          </OpacityContext>
+          </OpacityContextProvider>
         </SplitViewContext>
       </Container>
     </ThemeProvider>
