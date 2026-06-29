@@ -6,7 +6,5 @@ export function OpacityContextProvider({ children }) {
 
   const value = useMemo(() => ({ opacity, setOpacity }), [opacity]);
 
-  return (
-    <OpacityContext.Provider value={value}>{children}</OpacityContext.Provider>
-  );
+  return <OpacityContext value={value}>{children}</OpacityContext>;
 }
