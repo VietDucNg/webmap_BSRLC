@@ -5,9 +5,9 @@ import { useEffect, useMemo, useState } from "react";
 import Header from "./components/Header/Header";
 import LeftDrawer from "./components/LeftDrawer/LeftDrawer";
 import RightDrawer from "./components/RightDrawer/RightDrawer";
-import SplitViewContext from "./contexts/SplitViewContext";
 import MainContent from "./components/MainContent/MainContent";
 import { OpacityContextProvider } from "./contexts/OpacityContextProvider";
+import { SplitViewContextProvider } from "./contexts/SplitViewContextProvider";
 
 const initialMode = () => localStorage.getItem("mode") || "light";
 
@@ -36,13 +36,6 @@ export default function App() {
     setIsRightDrawerOpen(newOpen);
   };
 
-  // split mode state
-  const [isSplitMode, setIsSplitMode] = useState(false);
-  const splitViewValue = useMemo(
-    () => ({ isSplitMode, setIsSplitMode }),
-    [isSplitMode],
-  );
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -57,7 +50,7 @@ export default function App() {
           flexDirection: "column",
         }}
       >
-        <SplitViewContext value={splitViewValue}>
+        <SplitViewContextProvider>
           <OpacityContextProvider>
             <Header
               mode={mode}
@@ -77,7 +70,7 @@ export default function App() {
               />
             </Stack>
           </OpacityContextProvider>
-        </SplitViewContext>
+        </SplitViewContextProvider>
       </Container>
     </ThemeProvider>
   );
