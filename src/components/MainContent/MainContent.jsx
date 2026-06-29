@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import Map from "./Map";
 import YearSlider from "./YearSlider";
 import { YearAContextProvider } from "../../contexts/YearAContextProvider";
+import YearBContextProvider from "../../contexts/YearBContextProvider";
 
 export default function MainContent() {
   return (
@@ -13,8 +14,10 @@ export default function MainContent() {
     >
       <Box sx={{ height: "100%", position: "relative" }}>
         <YearAContextProvider>
-          <Map />
-          <YearSlider />
+          <YearBContextProvider>
+            <Map />
+            <YearSlider />
+          </YearBContextProvider>
         </YearAContextProvider>
       </Box>
     </Box>
