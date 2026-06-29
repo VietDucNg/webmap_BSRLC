@@ -4,21 +4,20 @@ import SplitViewContext from "./SplitViewContext";
 export function SplitViewContextProvider({ children }) {
   const [isSplitMode, setIsSplitMode] = useState(false);
   const [dividerPosition, setDividerPosition] = useState(0.5);
-  const splitViewValue = useMemo(
-    () => ({ isSplitMode, setIsSplitMode }),
-    [isSplitMode],
-  );
-  const dividerPositionValue = useMemo(
+
+  const value = useMemo(
     () => ({
+      isSplitMode,
+      setIsSplitMode,
       dividerPosition,
       setDividerPosition,
     }),
-    [dividerPosition],
+    [dividerPosition, isSplitMode],
   );
 
   return (
-    <SplitViewContext value={{ splitViewValue, dividerPositionValue }}>
+    <SplitViewContext.Provider value={value}>
       {children}
-    </SplitViewContext>
+    </SplitViewContext.Provider>
   );
 }
