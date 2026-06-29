@@ -3,6 +3,7 @@ import Slider from "@mui/material/Slider";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { useContext } from "react";
 import { YearAContext } from "../../contexts/YearAContext";
+import { YearBContext } from "../../contexts/YearBContext";
 
 const marks = [
   {
@@ -19,8 +20,9 @@ const marks = [
   },
 ];
 
-export default function YearSlider() {
+export default function YearSlider({ forMap }) {
   const { yearA, setYearA } = useContext(YearAContext);
+  const { yearB, setYearB } = useContext(YearBContext);
 
   return (
     <Box
@@ -32,7 +34,7 @@ export default function YearSlider() {
         bottom: 30,
         backgroundColor: "background.paper",
         width: "400px",
-        left: "50%",
+        [forMap == "A" ? "right" : "left"]: "50%",
         transform: "translateX(-50%)",
         borderRadius: 2,
         boxShadow: 3,
@@ -44,16 +46,18 @@ export default function YearSlider() {
           <Typography> TEMPORAL SELECTION</Typography>
         </Stack>
         <Button variant="contained" sx={{ pointerEvents: "none" }}>
-          {yearA}
+          {forMap == "A" ? yearA : yearB}
         </Button>
       </Stack>
 
       <Box sx={{ px: 1 }}>
         <Slider
-          defaultValue={2000}
+          defaultValue={forMap == "A" ? 2000 : 2022}
           step={1}
-          value={yearA}
-          onChange={(event, value) => setYearA(value)}
+          value={forMap == "A" ? yearA : yearB}
+          onChange={(event, value) =>
+            forMap == "A" ? setYearA(value) : setYearB(value)
+          }
           valueLabelDisplay="auto"
           marks={marks}
           min={2000}
