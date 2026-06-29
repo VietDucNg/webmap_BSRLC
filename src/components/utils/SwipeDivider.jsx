@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { useContext } from "react";
-import { SplitViewContext } from "../../contexts/SplitViewContext";
+import SplitViewContext from "../../contexts/SplitViewContext";
 
 export default function SwipeDivider() {
   const { dividerPosition } = useContext(SplitViewContext);
