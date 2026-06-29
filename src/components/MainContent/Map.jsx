@@ -6,10 +6,8 @@ import { Box, GlobalStyles } from "@mui/material";
 import MyLocationBtn from "../utils/MyLocationBtn";
 import { createBasemapGroup } from "../../map/createBasemapGroup";
 import { createMyLocation } from "../../map/createMyLocation";
-import {
-  createLayerSwitcher,
-  layerSwitcherStyles,
-} from "../../map/createLayerSwitcher";
+import { createLayerSwitcher } from "../../map/createLayerSwitcher";
+import { mapGlobalStyles } from "../../utils/globalMapStyles";
 import { createView } from "../../map/createView";
 import { CreateBsrlcGroup, getBsrlcLayerUrl } from "../../map/createBsrlcGroup";
 import { YearAContext } from "../../contexts/YearAContext";
@@ -85,22 +83,7 @@ export default function Map() {
 
   return (
     <>
-      <GlobalStyles
-        styles={(theme) => ({
-          ...layerSwitcherStyles(theme),
-          ".ol-zoom button, .ol-zoom button:hover, .ol-zoom button:focus, .ol-zoom button:active":
-            {
-              backgroundColor: theme.palette.background.paper,
-              color: theme.palette.text.primary,
-            },
-          ".ol-scale-line": {
-            bottom: 30,
-          },
-          ".ol-attribution": {
-            bottom: "3px",
-          },
-        })}
-      />
+      <GlobalStyles styles={mapGlobalStyles} />
       <Box
         sx={{
           height: "100%",
