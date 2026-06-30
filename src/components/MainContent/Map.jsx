@@ -41,7 +41,7 @@ export default function Map() {
   useEffect(() => {
     if (!mapRef.current) return;
 
-    const { layer, source } = CreateBsrlcLayer(isSplitMode, "A", yearA);
+    const { layer, source } = CreateBsrlcLayer(yearA);
     const bsrlcGroup = new LayerGroup({
       title: "Layers",
       layers: [],
@@ -87,7 +87,7 @@ export default function Map() {
     if (isSplitMode) {
       if (bsrlcLayerBRef.current) return;
 
-      const { layer, source } = CreateBsrlcLayer(isSplitMode, "B", yearB);
+      const { layer, source } = CreateBsrlcLayer(yearB);
 
       bsrlcLayerBRef.current = layer;
       bsrlcSourceBRef.current = source;
@@ -97,14 +97,23 @@ export default function Map() {
       bsrlcGroupRef.current.getLayers().push(layer);
 
       return;
-    }
-
-    // remove layer when split disabled
-    if (bsrlcLayerBRef.current) {
+    } else {
       bsrlcGroupRef.current.getLayers().remove(bsrlcLayerBRef.current);
 
       bsrlcLayerBRef.current = null;
       bsrlcSourceBRef.current = null;
+    }
+  }, [isSplitMode]);
+
+  // update layer title on splitMode change
+  useEffect(() => {
+    if (!bsrlcLayerARef.current) return;
+
+    if (isSplitMode) {
+      bsrlcLayerARef.current.set("title", "BSRLC Layer A");
+      bsrlcLayerBRef.current?.set("title", "BSRLC Layer B");
+    } else {
+      bsrlcLayerARef.current.set("title", "BSRLC Layer");
     }
   }, [isSplitMode]);
 

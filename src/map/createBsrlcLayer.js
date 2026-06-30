@@ -8,7 +8,7 @@ export function getBsrlcLayerUrl(year) {
   return BSRLC_LAYER_URL_TEMPLATE.replace("{year}", year);
 }
 
-export function CreateBsrlcLayer(isSplitMode, name, year) {
+export function CreateBsrlcLayer(year) {
   const source = new XYZ({
     url: getBsrlcLayerUrl(year),
     attributions: "(Pham et al., 2024)",
@@ -16,7 +16,7 @@ export function CreateBsrlcLayer(isSplitMode, name, year) {
   });
 
   const layer = new TileLayer({
-    title: isSplitMode ? `BSRLC Layer ${name}` : "BSRLC Layer",
+    title: "BSRLC Layer",
     type: "overlay",
     visible: true,
     opacity: 1,
