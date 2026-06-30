@@ -1,4 +1,3 @@
-import LayerGroup from "ol/layer/Group";
 import TileLayer from "ol/layer/Tile";
 import { XYZ } from "ol/source";
 
@@ -9,7 +8,7 @@ export function getBsrlcLayerUrl(year) {
   return BSRLC_LAYER_URL_TEMPLATE.replace("{year}", year);
 }
 
-export function CreateBsrlcGroup(isSplitMode, name, year) {
+export function CreateBsrlcLayer(isSplitMode, name, year) {
   const source = new XYZ({
     url: getBsrlcLayerUrl(year),
     attributions: "(Pham et al., 2024)",
@@ -24,13 +23,7 @@ export function CreateBsrlcGroup(isSplitMode, name, year) {
     source,
   });
 
-  const group = new LayerGroup({
-    title: "Layers",
-    layers: [layer],
-  });
-
   return {
-    group,
     layer,
     source,
   };

@@ -9,24 +9,31 @@ import { createMyLocation } from "../../map/createMyLocation";
 import { createLayerSwitcher } from "../../map/createLayerSwitcher";
 import { mapGlobalStyles } from "../../utils/globalMapStyles";
 import { createView } from "../../map/createView";
-import { CreateBsrlcGroup, getBsrlcLayerUrl } from "../../map/createBsrlcGroup";
+import { CreateBsrlcLayer, getBsrlcLayerUrl } from "../../map/createBsrlcLayer";
 import { YearAContext } from "../../contexts/YearAContext";
 import { OpacityContext } from "../../contexts/OpacityContext";
 import ScaleLine from "ol/control/ScaleLine";
 import HomeBtn from "../utils/HomeBtn";
 import { toLonLat } from "ol/proj";
 import MouseCoordBox from "../utils/MouseCoordBox";
+import { YearBContext } from "../../contexts/YearBContext";
+import SplitViewContext from "../../contexts/SplitViewContext";
+import LayerGroup from "ol/layer/Group";
 
 export default function Map() {
   const { yearA } = useContext(YearAContext);
+  const { yearB } = useContext(YearBContext);
+  const { isSplitMode } = useContext(SplitViewContext);
   const { opacity } = useContext(OpacityContext);
   const [mouseCoord, setMouseCoord] = useState(null);
 
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
   const bsrlcGroupRef = useRef(null);
-  const bsrlcLayerRef = useRef(null);
-  const bsrlcSourceRef = useRef(null);
+  const bsrlcLayerARef = useRef(null);
+  const bsrlcSourceARef = useRef(null);
+  const bsrlcLayerBRef = useRef(null);
+  const bsrlcSourceBRef = useRef(null);
   const geolocationRef = useRef(null);
   const viewRef = useRef(null);
 
@@ -34,11 +41,17 @@ export default function Map() {
   useEffect(() => {
     if (!mapRef.current) return;
 
-    const { group, layer, source } = CreateBsrlcGroup(yearA);
+    const { layer, source } = CreateBsrlcLayer(isSplitMode, "A", yearA);
+    const bsrlcGroup = new LayerGroup({
+      title: "Layers",
+      layers: [],
+    });
 
-    bsrlcGroupRef.current = group;
-    bsrlcLayerRef.current = layer;
-    bsrlcSourceRef.current = source;
+    bsrlcLayerARef.current = layer;
+    bsrlcSourceARef.current = source;
+    bsrlcGroupRef.current = bsrlcGroup;
+
+    bsrlcGroup.getLayers().push(layer);
 
     const view = createView();
     viewRef.current = view;
@@ -67,18 +80,53 @@ export default function Map() {
     };
   }, []);
 
+  // create/remove Layer B
+  useEffect(() => {
+    if (!mapInstance.current) return;
+
+    if (isSplitMode) {
+      if (bsrlcLayerBRef.current) return;
+
+      const { layer, source } = CreateBsrlcLayer(isSplitMode, "B", yearB);
+
+      bsrlcLayerBRef.current = layer;
+      bsrlcSourceBRef.current = source;
+
+      layer.setOpacity(opacity / 100);
+
+      bsrlcGroupRef.current.getLayers().push(layer);
+
+      return;
+    }
+
+    // remove layer when split disabled
+    if (bsrlcLayerBRef.current) {
+      bsrlcGroupRef.current.getLayers().remove(bsrlcLayerBRef.current);
+
+      bsrlcLayerBRef.current = null;
+      bsrlcSourceBRef.current = null;
+    }
+  }, [isSplitMode]);
+
   // update bsrlc layer on year change
   useEffect(() => {
-    if (!bsrlcSourceRef.current) return;
+    if (!bsrlcSourceARef.current) return;
 
-    bsrlcSourceRef.current.setUrl(getBsrlcLayerUrl(yearA));
+    bsrlcSourceARef.current.setUrl(getBsrlcLayerUrl(yearA));
   }, [yearA]);
+
+  useEffect(() => {
+    if (!bsrlcSourceBRef.current) return;
+
+    bsrlcSourceBRef.current.setUrl(getBsrlcLayerUrl(yearB));
+  }, [yearB]);
 
   // update bsrlc layer opacity on opacity change
   useEffect(() => {
-    if (!bsrlcLayerRef.current) return;
+    if (!bsrlcLayerARef.current) return;
 
-    bsrlcLayerRef.current.setOpacity(opacity / 100);
+    bsrlcLayerARef.current.setOpacity(opacity / 100);
+    bsrlcLayerBRef.current?.setOpacity(opacity / 100);
   }, [opacity]);
 
   return (
