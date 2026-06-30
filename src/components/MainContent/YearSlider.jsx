@@ -4,6 +4,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { useContext } from "react";
 import { YearAContext } from "../../contexts/YearAContext";
 import { YearBContext } from "../../contexts/YearBContext";
+import SplitViewContext from "../../contexts/SplitViewContext";
 
 const marks = [
   {
@@ -23,6 +24,7 @@ const marks = [
 export default function YearSlider({ forMap }) {
   const { yearA, setYearA } = useContext(YearAContext);
   const { yearB, setYearB } = useContext(YearBContext);
+  const { isSplitMode } = useContext(SplitViewContext);
 
   return (
     <Box
@@ -34,8 +36,10 @@ export default function YearSlider({ forMap }) {
         bottom: 30,
         backgroundColor: "background.paper",
         width: "400px",
-        [forMap == "A" ? "right" : "left"]: "50%",
-        transform: "translateX(-50%)",
+        left:
+          forMap === "B" || (forMap === "A" && !isSplitMode) ? "50%" : "auto",
+        right: forMap === "A" && isSplitMode ? "50%" : "auto",
+        transform: forMap == "B" ? "translateX(50%)" : "translateX(-50%)",
         borderRadius: 2,
         boxShadow: 3,
       }}
