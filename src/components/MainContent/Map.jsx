@@ -36,6 +36,7 @@ export default function Map() {
   const bsrlcSourceBRef = useRef(null);
   const geolocationRef = useRef(null);
   const viewRef = useRef(null);
+  const layerSwitcherRef = useRef(null);
 
   // create map once on mount
   useEffect(() => {
@@ -63,7 +64,9 @@ export default function Map() {
       view,
     });
 
-    mapInstance.current.addControl(createLayerSwitcher());
+    layerSwitcherRef.current = createLayerSwitcher();
+
+    mapInstance.current.addControl(layerSwitcherRef.current);
     mapInstance.current.addControl(new ScaleLine());
 
     // get mouse coordinate event
@@ -115,6 +118,11 @@ export default function Map() {
     } else {
       bsrlcLayerARef.current.set("title", "BSRLC Layer");
     }
+  }, [isSplitMode]);
+
+  // update layerSwitcher panel on splitMode change
+  useEffect(() => {
+    layerSwitcherRef.current.renderPanel();
   }, [isSplitMode]);
 
   // update bsrlc layer on year change
