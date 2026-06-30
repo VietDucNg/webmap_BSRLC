@@ -5,19 +5,19 @@ import { XYZ } from "ol/source";
 const BSRLC_LAYER_URL_TEMPLATE =
   "https://ifzo-gis.geo.uni-greifswald.de/server/rest/services/Hosted/BSRLC_{year}_web_tif/MapServer/tile/{z}/{y}/{x}";
 
-export function getBsrlcLayerUrl(yearA) {
-  return BSRLC_LAYER_URL_TEMPLATE.replace("{year}", yearA);
+export function getBsrlcLayerUrl(name, year) {
+  return BSRLC_LAYER_URL_TEMPLATE.replace("{year}", year);
 }
 
-export function CreateBsrlcGroup(yearA) {
+export function CreateBsrlcGroup(year) {
   const source = new XYZ({
-    url: getBsrlcLayerUrl(yearA),
+    url: getBsrlcLayerUrl(year),
     attributions: "(Pham et al., 2024)",
     maxZoom: 15,
   });
 
   const layer = new TileLayer({
-    title: "BSRLC Layer",
+    title: `BSRLC Layer ${name}`,
     type: "overlay",
     visible: true,
     opacity: 1,
