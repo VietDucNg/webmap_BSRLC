@@ -19,11 +19,12 @@ import MouseCoordBox from "../utils/MouseCoordBox";
 import { YearBContext } from "../../contexts/YearBContext";
 import SplitViewContext from "../../contexts/SplitViewContext";
 import LayerGroup from "ol/layer/Group";
+import { getRenderPixel } from "ol/render";
 
 export default function Map() {
   const { yearA } = useContext(YearAContext);
   const { yearB } = useContext(YearBContext);
-  const { isSplitMode } = useContext(SplitViewContext);
+  const { isSplitMode, dividerPosition } = useContext(SplitViewContext);
   const { opacity } = useContext(OpacityContext);
   const [mouseCoord, setMouseCoord] = useState(null);
 
@@ -99,14 +100,65 @@ export default function Map() {
 
       bsrlcGroupRef.current.getLayers().push(layer);
 
+      mapInstance.current.render();
+
       return;
     } else {
       bsrlcGroupRef.current.getLayers().remove(bsrlcLayerBRef.current);
+
+      mapInstance.current.render();
 
       bsrlcLayerBRef.current = null;
       bsrlcSourceBRef.current = null;
     }
   }, [isSplitMode]);
+
+  // clip Layer B on split mode
+  useEffect(() => {
+    if (!bsrlcLayerBRef.current || !mapInstance.current) return;
+
+    const layer = bsrlcLayerBRef.current;
+
+    function preRender(event) {
+      const ctx = event.context;
+
+      const mapSize = mapInstance.current.getSize();
+
+      const clipX = mapSize[0] * dividerPosition;
+
+      const topLeft = getRenderPixel(event, [clipX, 0]);
+
+      const bottomRight = getRenderPixel(event, [mapSize[0], mapSize[1]]);
+
+      ctx.save();
+
+      ctx.beginPath();
+
+      ctx.rect(
+        topLeft[0],
+        topLeft[1],
+        bottomRight[0] - topLeft[0],
+        bottomRight[1] - topLeft[1],
+      );
+
+      ctx.clip();
+    }
+
+    function postRender(event) {
+      event.context.restore();
+    }
+
+    layer.on("prerender", preRender);
+
+    layer.on("postrender", postRender);
+
+    mapInstance.current.render();
+
+    return () => {
+      layer.un("prerender", preRender);
+      layer.un("postrender", postRender);
+    };
+  }, [dividerPosition, isSplitMode]);
 
   // update layer title on splitMode change
   useEffect(() => {
