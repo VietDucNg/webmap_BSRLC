@@ -5,8 +5,8 @@ export default function MouseCoordBox({ mouseCoord }) {
     <Box
       sx={{
         position: "absolute",
-        bottom: 30,
-        right: 9,
+        bottom: 4,
+        right: 40,
         px: 1,
         py: 0.5,
         bgcolor: "background.paper",
