@@ -16,5 +16,10 @@ export const mapGlobalStyles = (theme) => ({
   },
   ".ol-attribution": {
     bottom: "3px",
+    "& ul, & button, & button:hover, & button:focus, & button:focus-visible, & button:active":
+      {
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
+      },
   },
 });
