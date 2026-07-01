@@ -8,7 +8,11 @@ export const mapGlobalStyles = (theme) => ({
       color: theme.palette.text.primary,
     },
   ".ol-scale-line": {
-    // bottom: 30,
+    backgroundColor: theme.palette.background.paper,
+    "& .ol-scale-line-inner": {
+      color: theme.palette.text.primary,
+      borderColor: theme.palette.text.primary,
+    },
   },
   ".ol-attribution": {
     bottom: "3px",
