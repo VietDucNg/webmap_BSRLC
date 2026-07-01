@@ -33,7 +33,7 @@ export default function YearSlider({ forMap }) {
         paddingBottom: 0.5,
         px: 3,
         position: "absolute",
-        bottom: 30,
+        bottom: 35,
         backgroundColor: "background.paper",
         width: "400px",
         left:
