@@ -9,6 +9,7 @@ export const mapGlobalStyles = (theme) => ({
     },
   ".ol-scale-line": {
     backgroundColor: theme.palette.background.paper,
+    bottom: 35,
     "& .ol-scale-line-inner": {
       color: theme.palette.text.primary,
       borderColor: theme.palette.text.primary,
